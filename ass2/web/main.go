@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ass2"
+	"github.com/yJepo/Asssignment2_cloud/ass2"
 	"net/http"
 	"os"
 )

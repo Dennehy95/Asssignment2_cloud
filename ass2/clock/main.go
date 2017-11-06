@@ -2,8 +2,8 @@ package main
 
 // Imported resources
 import (
-	"ass2"
 	"fmt"
+	"github.com/yJepo/Asssignment2_cloud/ass2"
 	"strings"
 	"time"
 )
