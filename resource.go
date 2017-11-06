@@ -96,7 +96,6 @@ func HandlerGetDel(w http.ResponseWriter, r *http.Request) {
 
 		// Checks if Id actually makes sense
 		if !(bson.IsObjectIdHex(Id)) {
-			fmt.Println("trash")
 			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 			return
 		}
