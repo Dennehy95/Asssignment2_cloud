@@ -1,13 +1,13 @@
 package resource
 
 import (
-	"testing"
-	"net/http/httptest"
-	"net/http"
+	"bytes"
 	"encoding/json"
 	"fmt"
-	"bytes"
 	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
+	"testing"
 )
 
 func TestHandlerPostWithGetDel(t *testing.T) {
@@ -44,7 +44,7 @@ func TestHandlerPostWithGetDel(t *testing.T) {
 
 	client := &http.Client{}
 
-	response2, err := http.NewRequest(http.MethodDelete, testServer2.URL + "/" + string(id), nil)
+	response2, err := http.NewRequest(http.MethodDelete, testServer2.URL+"/"+string(id), nil)
 	if err != nil {
 		fmt.Println("Error occured during http.NewRequest: ", err)
 		return
@@ -96,7 +96,6 @@ func TestFullTriggerCheck(t *testing.T) {
 	}
 }
 
-
 func TestGetJSON(t *testing.T) {
 	test := Rates{}
 
@@ -107,14 +106,13 @@ func TestGetJSON(t *testing.T) {
 	}
 }
 
-
 func TestHandlerAverage(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(HandlerAverage))
 	defer testServer.Close()
 
 	post := make(map[string]interface{})
 
-	post["baseCurrency"]   = "EUR"
+	post["baseCurrency"] = "EUR"
 	post["targetCurrency"] = "EUR"
 
 	jsonContent, err := json.Marshal(post)
@@ -130,14 +128,13 @@ func TestHandlerAverage(t *testing.T) {
 	}
 }
 
-
 func TestHandlerLatest(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(HandlerLatest))
 	defer testServer.Close()
 
 	post := make(map[string]interface{})
 
-	post["baseCurrency"]   = "EUR"
+	post["baseCurrency"] = "EUR"
 	post["targetCurrency"] = "NOK"
 
 	jsonContent, err := json.Marshal(post)
@@ -161,7 +158,7 @@ func TestInvoker(t *testing.T) {
 }
 
 func TestStartSession(t *testing.T) {
-	_, session, err:= StartSession("mongodb://user:123@ds133465.mlab.com:33465/assignment2", "assignment2", "tottot")
+	_, session, err := StartSession("mongodb://user:123@ds133465.mlab.com:33465/assignment2", "assignment2", "tottot")
 	defer session.Close()
 
 	if err != nil {

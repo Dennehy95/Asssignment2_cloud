@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"ass2"
+	"net/http"
 	"os"
 )
 
@@ -12,10 +12,10 @@ func main() {
 		port = "8080"
 	}
 
-	http.HandleFunc    ("/exchange/evaluationtrigger", resource.FullTriggerCheck) //GET
-	http.HandleFunc    ("/exchange"                  , resource.HandlerPost     ) //POST
-	http.HandleFunc    ("/exchange/"                 , resource.HandlerGetDel   ) //GET and DELETE
-	http.HandleFunc    ("/exchange/latest"           , resource.HandlerLatest   ) //POST (and GET)
-	http.HandleFunc    ("/exchange/average"          , resource.HandlerAverage  ) //POST
-	http.ListenAndServe(       ":" + port                   , nil                      )
+	http.HandleFunc("/exchange/evaluationtrigger", resource.FullTriggerCheck) //GET
+	http.HandleFunc("/exchange", resource.HandlerPost)                        //POST
+	http.HandleFunc("/exchange/", resource.HandlerGetDel)                     //GET and DELETE
+	http.HandleFunc("/exchange/latest", resource.HandlerLatest)               //POST (and GET)
+	http.HandleFunc("/exchange/average", resource.HandlerAverage)             //POST
+	http.ListenAndServe(":"+port, nil)
 }
