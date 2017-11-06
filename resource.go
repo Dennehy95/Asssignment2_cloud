@@ -94,6 +94,13 @@ func HandlerGetDel(w http.ResponseWriter, r *http.Request) {
 		parts := strings.Split(r.URL.Path, "/")
 		Id := parts[len(parts)-1]
 
+		// Checks if Id actually makes sense
+		if !(bson.IsObjectIdHex(Id)) {
+			fmt.Println("trash")
+			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			return
+		}
+
 		// Starts a session with the DB
 		c, session, err := StartSession(Url, Database, Collection)
 		if err != nil {
